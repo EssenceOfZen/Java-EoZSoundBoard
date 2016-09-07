@@ -1,0 +1,49 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<!--VBox is a single column panel-->
+<?import javafx.scene.text.Text?>
+<VBox id="vbox" prefHeight="400" prefWidth="800"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="soundboardEoZ.Controller">
+    <MenuBar fx:id="menuBar"> <!--Literally a MenuBar-->
+        <menus> <!--Holds the menu concept for the bar-->
+            <Menu text="File"> <!--Menu holds Items-->
+                <items>
+                    <MenuItem text="New" />
+                    <MenuItem text="Open" />
+                    <SeparatorMenuItem />
+                    <MenuItem text="Save Settings" />
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Settings" />
+                </items>
+            </Menu>
+            <Menu text="Edit">
+                <items>
+                    <MenuItem text="Copy"/>
+                </items>
+            </Menu>
+            <Menu text="About">
+                <items>
+                    <MenuItem text="Team"/>
+                </items>
+            </Menu>
+            <Menu text="Help">
+                <items>
+                    <MenuItem text="Guide"/>
+                    <MenuItem text="Forums"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+
+    <GridPane xmlns:fx="http://javafx.com/fxml" hgap="10" vgap="10">
+        <Text text="Clickity!" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2" />
+
+        <Label text="Configuration Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Button fx:id="test_button" text="Hello"></Button>
+    </GridPane>
+</VBox>
