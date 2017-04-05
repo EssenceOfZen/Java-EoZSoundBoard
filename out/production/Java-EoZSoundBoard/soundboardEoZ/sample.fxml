@@ -15,7 +15,15 @@
 <!--VBox is a single column panel-->
 
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.control.Separator?>
 <VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.Controller">
+
     <MenuBar fx:id="menuBar"> <!--Literally a MenuBar-->
         <menus> <!--Holds the menu concept for the bar-->
             <Menu text="File"> <!--Menu holds Items-->
@@ -46,35 +54,64 @@
             </Menu>
         </menus>
     </MenuBar>
+    <VBox>
+        <ProgressBar></ProgressBar>
+        <Text>
 
-    <Pane>
-        <GridPane>
-            <Button GridPane.columnIndex="0">I'm another Test</Button>
-            <Text fill="RED" stroke="BLACK" strokeWidth="2.0" GridPane.columnIndex="1">
-                <font><Font size="25"/></font>
-                Testing
-            </Text>
+            Testing...
+        </Text>
+    </VBox>
+
+    <!--<Text>Testing</Text>-->
+    <VBox>
+        <StackPane>
+            <GridPane alignment="CENTER">
+                <!--<Button GridPane.columnIndex="0">I'm another Test</Button>-->
+                <Text fill="RED" stroke="Blue" strokeWidth="2.0" GridPane.columnIndex="5" GridPane.halignment="CENTER">
+                    <font><Font size="25"/></font>
+                    EoZ Sound Board
+                </Text>
+            </GridPane>
+        </StackPane>
+
+        <StackPane>
+            <GridPane alignment="CENTER_RIGHT">
+                <Text>Sound-Effects</Text>
+            </GridPane>
+        </StackPane>
+
+        <GridPane fx:id="sound_effects_grid" hgap="10" vgap="10">
+
         </GridPane>
-    </Pane>
 
-    <Text>Sound-Bites</Text>
-    <GridPane fx:id="sound_bites_grid" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml">
+        <Separator></Separator>
 
-        <!--<Button GridPane.columnIndex="0" GridPane.rowIndex="1">Hello!</Button>-->
+        <StackPane>
+            <GridPane alignment="CENTER_LEFT">
+                <Text>Sound-Bites</Text>
+            </GridPane>
+        </StackPane>
 
-        <!--<Button GridPane.columnIndex="1">Hiya!</Button>-->
+        <GridPane fx:id="sound_bites_grid" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml">
 
-        <!--<Text text="Clickity!" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2" />-->
+            <!--<Button GridPane.columnIndex="0" GridPane.rowIndex="1">Hello!</Button>-->
 
-        <!--<Label text="Configuration Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />-->
-        <!--<TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
+            <!--<Button GridPane.columnIndex="1">Hiya!</Button>-->
 
-        <!--<Button fx:id="test_button" text="Hello"></Button>-->
+            <!--<Text text="Clickity!" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2" />-->
 
-    </GridPane>
+            <!--<Label text="Configuration Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />-->
+            <!--<TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
 
-    <Text>Sound-Effects</Text>
-    <GridPane fx:id="sound_effects_grid" hgap="10" vgap="10">
-        
-    </GridPane>
+            <!--<Button fx:id="test_button" text="Hello"></Button>-->
+
+        </GridPane>
+
+
+    </VBox>
+
+
+
+    <!--<ProgressBar></ProgressBar>-->
+    <!--<ProgressIndicator></ProgressIndicator>-->
 </VBox>

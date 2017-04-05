@@ -1,3 +1,6 @@
+/* This file is essentially the start of the program, but the Controller.java file is what runs the GUI's actions
+* */
+
 package soundboardEoZ;
 
 import javafx.application.Application;
@@ -15,11 +18,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{ /*Main class main method that starts the gui*/
     /*We basically state that we load the fxml file as our resources and set the stage for the window*/
+    /*The Controller is tied to this stage via the sample.fxml where it sets fx:controller equal to our controller*/
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("EoZ Soundboard -- http://EssenceOfZen.org/#Software");
+        primaryStage.setScene(new Scene(root, 600, 475));
         primaryStage.show();
-
 
     }
 
