@@ -25,7 +25,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
-<VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.Controller">
+<VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.MainController">
 
     <MenuBar fx:id="menuBar"> <!--Literally a MenuBar-->
         <menus> <!--Holds the menu concept for the bar-->
