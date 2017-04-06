@@ -1,49 +1,46 @@
 package soundboardEoZ;
 
+import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 
 
 public class Controller {
+    // Class global variables
     private String directory = System.getProperty("user.dir"); // System Grabs the project directory
     private int index = 0;
+    private Media current_sound;
+    private MediaPlayer player = null;
 
-    @FXML
-    GridPane sound_bites_grid;
-    
-    @FXML
-    GridPane sound_effects_grid;
+    // FXML IDs to variables --------
+    @FXML GridPane sound_bites_grid;
+    @FXML GridPane sound_effects_grid;
+    @FXML GridPane music_sting_grid;
+    @FXML Slider time_slider;
+    @FXML Button stop_button;
+    @FXML Label status_indicator;
 
     public void initialize(){ /*This is called when the program runs*/
         // Check to see if our Directories are there
         createFolder("soundbites");
         createFolder("soundeffects");
+        createFolder("musicstings");
 
 
 
         //int soundeffects_length = getNumbersOfFiles(directory + "/settings/");
 
         System.out.println("Project Directory: " + directory);
-
-        //System.out.println(files[1].getName());
-
-
-        // What we need to do here is replace this [while function] with another that uses the [length] variable
-        // We then should then grab them file by file - using the name of the file for the text.
-
-//        while(index <= target){
-//            // Todo: add a sub loop that counts how many items are on each line.
-//            // We're starting at 0, ending at 10 -- when we go over 10 (so 11) we want to switch the sub target to 2 for rowindex
-//            // Since we're using ints - we can do ((index / 10) + 1) which will give us the row number we want
-//            Button sound_button = new Button("Button_" + index);
-//            sound_bites_grid.add(sound_button,index,1);
-//            index++;
-//        }
 
 
         // Sound Effects =========================
@@ -75,16 +72,39 @@ public class Controller {
             sound_button.setOnAction(event -> playSound(sound_button, "soundbites/"));
         }
 
+
+        // Music Stings ==========================
+        int stings_per_column = 8;
+        int stings_target = getNumbersOfFiles(directory + "/musicstings/");
+        File stings_files[] = getFiles(directory + "/musicstings/");
+
+        for(index = 0; index < stings_target; index++){
+            Button sound_button = new Button(stings_files[index].getName());
+            music_sting_grid.add(sound_button,(index%stings_per_column),((index / stings_per_column) + 1));
+
+            sound_button.setOnAction(event -> playSound(sound_button, "musicstings/"));
+        }
+
+        stop_button.setOnAction(event -> stopSound());
+
     }
 
+
+    public void newLine(){
+        System.out.println();
+    }
 
 
     private void createFolder(String folder_name){
         File folder = new File(folder_name);
 
         try{
-            folder.mkdir(); // creating our directory
-            System.out.println("Creating folder: " + folder_name);
+            if(folder.isDirectory()){
+                System.out.println("Folder: " + folder_name + " already exists.");
+            }else{
+                folder.mkdir(); // creating our directory
+                System.out.println("Creating folder: " + folder_name);
+            }
 
         }catch (SecurityException security_exception){
             //System.out.println(security_exception);
@@ -117,14 +137,46 @@ public class Controller {
     }
 
     private void playSound(Button sound_button, String directory){
-        Media activated = new Media(new File(directory + sound_button.getText()).toURI().toString());
-        MediaPlayer player = new MediaPlayer(activated);
-        player.play();
-        System.out.println("Playing: " + sound_button.getText());
+        // Check to see if sound is playing, if so, stop it!
+        if(player != null){
+            player.stop();
+
+        }
+
+        current_sound = new Media(new File(directory + sound_button.getText()).toURI().toString());
+        player = new MediaPlayer(current_sound);
+
+        // Set the MediaPlayer to be ready so the sound file is properly loaded - meaning we can grab data.
+        player.setOnReady(new Runnable() {
+            @Override
+            public void run() {
+
+                player.play();
+                status_indicator.setText(sound_button.getText());
+
+                System.out.println("Playing: " + sound_button.getText());
+
+                System.out.println("Duration: " + current_sound.getDuration().toSeconds());
+
+                // Run while the media player is changing in time
+                player.currentTimeProperty().addListener((observable, oldValue, newValue) ->{
+                    //System.out.println(player.getCurrentTime().toSeconds());
+                    //System.out.println("Player:" + observable + " | Changed from playing at: " + oldValue + " to play at " + newValue);
+
+                    // Set the slider's max volume to the max of the selected sound file
+                    time_slider.setMax(current_sound.getDuration().toSeconds());
+                    // Update the slider's value as the file plays
+                    time_slider.setValue(player.getCurrentTime().toSeconds());
+                });
+            }
+        });
+        newLine();
+
     }
 
     private void stopSound(){
-        
+        player.stop();
     }
+
 
 }
