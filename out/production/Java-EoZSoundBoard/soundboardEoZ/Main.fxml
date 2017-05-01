@@ -22,7 +22,10 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <?import javafx.scene.control.Separator?>
-<VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.Controller">
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.MainController">
 
     <MenuBar fx:id="menuBar"> <!--Literally a MenuBar-->
         <menus> <!--Holds the menu concept for the bar-->
@@ -54,16 +57,54 @@
             </Menu>
         </menus>
     </MenuBar>
-    <VBox>
-        <ProgressBar></ProgressBar>
-        <Text>
 
-            Testing...
-        </Text>
-    </VBox>
+    <GridPane style="-fx-background-color: grey; -fx-border-color: black;">
+        <padding>
+            <Insets left="5" right="5" top="5" bottom="5"/>
+        </padding>
+        <columnConstraints>
+            <!--Set the spacing for the following 4 elements-->
+            <ColumnConstraints percentWidth="10"/>
+            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="12"/>
+            <ColumnConstraints percentWidth="20"/>
+        </columnConstraints>
+        <ProgressBar GridPane.columnIndex="0"/>
+        <Label fx:id="status_indicator" GridPane.columnIndex="1" text="Nothing">
+            <padding>
+                <Insets left="3"/>
+            </padding>
+        </Label>
+        <Label GridPane.columnIndex="2" text=" || Duration: ">
+            <padding>
+                <Insets left="3"/>
+            </padding>
+        </Label>
+        <Label fx:id="sound_duration" GridPane.columnIndex="3" text="0.0">
+            <padding>
+                <Insets left="3"/>
+            </padding>
+        </Label>
+    </GridPane>
+
+
+    <Slider fx:id="time_slider">
+        <padding>
+            <Insets left="5" right="5" bottom="5" top="5"/>
+        </padding>
+    </Slider>
+
+    <Separator>
+        <padding>
+            <Insets top="5" bottom="5"/>
+        </padding>
+    </Separator>
 
     <!--<Text>Testing</Text>-->
     <VBox>
+        <padding>
+            <Insets top="5" bottom="5" right="5" left="5"/>
+        </padding>
         <StackPane>
             <GridPane alignment="CENTER">
                 <!--<Button GridPane.columnIndex="0">I'm another Test</Button>-->
@@ -74,8 +115,10 @@
             </GridPane>
         </StackPane>
 
+        <Button fx:id="stop_button" style="-fx-background-color: #cc0000;">Stop</Button>
+
         <StackPane>
-            <GridPane alignment="CENTER_RIGHT">
+            <GridPane alignment="CENTER">
                 <Text>Sound-Effects</Text>
             </GridPane>
         </StackPane>
@@ -84,10 +127,14 @@
 
         </GridPane>
 
-        <Separator></Separator>
+        <Separator>
+            <padding>
+                <Insets top="5" bottom="5" />
+            </padding>
+        </Separator>
 
         <StackPane>
-            <GridPane alignment="CENTER_LEFT">
+            <GridPane alignment="CENTER">
                 <Text>Sound-Bites</Text>
             </GridPane>
         </StackPane>
@@ -104,6 +151,22 @@
             <!--<TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />-->
 
             <!--<Button fx:id="test_button" text="Hello"></Button>-->
+
+        </GridPane>
+
+        <Separator>
+            <padding>
+                <Insets top="5" bottom="5"/>
+            </padding>
+        </Separator>
+
+        <StackPane>
+            <GridPane alignment="CENTER">
+                <Text>Music Stings</Text>
+            </GridPane>
+        </StackPane>
+
+        <GridPane fx:id="music_sting_grid" hgap="10" vgap="10">
 
         </GridPane>
 

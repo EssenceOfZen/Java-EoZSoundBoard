@@ -15,7 +15,7 @@ import javafx.util.Duration;
 import java.io.File;
 
 
-public class Controller {
+public class MainController {
     // Class global variables
     private String directory = System.getProperty("user.dir"); // System Grabs the project directory
     private int index = 0;

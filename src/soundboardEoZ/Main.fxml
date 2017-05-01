@@ -25,7 +25,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
-<VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.Controller">
+<VBox id="vbox" prefHeight="400" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="soundboardEoZ.MainController">
 
     <MenuBar fx:id="menuBar"> <!--Literally a MenuBar-->
         <menus> <!--Holds the menu concept for the bar-->
@@ -58,29 +58,16 @@
         </menus>
     </MenuBar>
 
-    <GridPane style="-fx-background-color: grey; -fx-border-color: black;">
+    <GridPane>
         <padding>
-            <Insets left="5" right="5" top="5" bottom="5"/>
+            <Insets left="5" right="5" top="5"/>
         </padding>
         <columnConstraints>
-            <!--Set the spacing for the following 4 elements-->
             <ColumnConstraints percentWidth="10"/>
-            <ColumnConstraints percentWidth="20"/>
-            <ColumnConstraints percentWidth="12"/>
-            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="90"/>
         </columnConstraints>
         <ProgressBar GridPane.columnIndex="0"/>
         <Label fx:id="status_indicator" GridPane.columnIndex="1" text="Nothing">
-            <padding>
-                <Insets left="3"/>
-            </padding>
-        </Label>
-        <Label GridPane.columnIndex="2" text=" || Duration: ">
-            <padding>
-                <Insets left="3"/>
-            </padding>
-        </Label>
-        <Label fx:id="sound_duration" GridPane.columnIndex="3" text="0.0">
             <padding>
                 <Insets left="3"/>
             </padding>
@@ -115,7 +102,7 @@
             </GridPane>
         </StackPane>
 
-        <Button fx:id="stop_button" style="-fx-background-color: #cc0000;">Stop</Button>
+        <Button fx:id="stop_button">Stop</Button>
 
         <StackPane>
             <GridPane alignment="CENTER">
