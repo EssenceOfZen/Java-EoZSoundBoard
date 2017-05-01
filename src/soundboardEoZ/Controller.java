@@ -29,13 +29,13 @@ public class Controller {
     @FXML Slider time_slider;
     @FXML Button stop_button;
     @FXML Label status_indicator;
+    @FXML Label sound_duration;
 
     public void initialize(){ /*This is called when the program runs*/
         // Check to see if our Directories are there
         createFolder("soundbites");
         createFolder("soundeffects");
         createFolder("musicstings");
-
 
 
         //int soundeffects_length = getNumbersOfFiles(directory + "/settings/");
@@ -90,7 +90,7 @@ public class Controller {
     }
 
 
-    public void newLine(){
+    private void newLine(){
         System.out.println();
     }
 
@@ -147,35 +147,40 @@ public class Controller {
         player = new MediaPlayer(current_sound);
 
         // Set the MediaPlayer to be ready so the sound file is properly loaded - meaning we can grab data.
-        player.setOnReady(new Runnable() {
-            @Override
-            public void run() {
+        player.setOnReady(() -> {
 
-                player.play();
-                status_indicator.setText(sound_button.getText());
+            player.play();
+            status_indicator.setText(sound_button.getText()); // Set the label to the name of the file
 
-                System.out.println("Playing: " + sound_button.getText());
+            System.out.println("Playing: " + sound_button.getText());
 
-                System.out.println("Duration: " + current_sound.getDuration().toSeconds());
+            System.out.println("Duration: " + current_sound.getDuration().toSeconds());
 
-                // Run while the media player is changing in time
-                player.currentTimeProperty().addListener((observable, oldValue, newValue) ->{
-                    //System.out.println(player.getCurrentTime().toSeconds());
-                    //System.out.println("Player:" + observable + " | Changed from playing at: " + oldValue + " to play at " + newValue);
+            sound_duration.setText(String.valueOf(current_sound.getDuration().toSeconds()));
 
-                    // Set the slider's max volume to the max of the selected sound file
-                    time_slider.setMax(current_sound.getDuration().toSeconds());
-                    // Update the slider's value as the file plays
-                    time_slider.setValue(player.getCurrentTime().toSeconds());
-                });
-            }
+            // Run while the media player is changing in time
+            player.currentTimeProperty().addListener((observable, oldValue, newValue) ->{
+                //System.out.println(player.getCurrentTime().toSeconds());
+                //System.out.println("Player:" + observable + " | Changed from playing at: " + oldValue + " to play at " + newValue);
+
+                // Set the slider's max volume to the max of the selected sound file
+                time_slider.setMax(current_sound.getDuration().toSeconds());
+                // Update the slider's value as the file plays
+                time_slider.setValue(player.getCurrentTime().toSeconds());
+            });
         });
         newLine();
 
     }
 
     private void stopSound(){
-        player.stop();
+
+        try {
+            player.stop();
+        }catch (Exception e){
+            System.out.println("Problem: " + e);
+        }
+
     }
 
 

@@ -58,16 +58,29 @@
         </menus>
     </MenuBar>
 
-    <GridPane>
+    <GridPane style="-fx-background-color: grey; -fx-border-color: black;">
         <padding>
-            <Insets left="5" right="5" top="5"/>
+            <Insets left="5" right="5" top="5" bottom="5"/>
         </padding>
         <columnConstraints>
+            <!--Set the spacing for the following 4 elements-->
             <ColumnConstraints percentWidth="10"/>
-            <ColumnConstraints percentWidth="90"/>
+            <ColumnConstraints percentWidth="20"/>
+            <ColumnConstraints percentWidth="12"/>
+            <ColumnConstraints percentWidth="20"/>
         </columnConstraints>
         <ProgressBar GridPane.columnIndex="0"/>
         <Label fx:id="status_indicator" GridPane.columnIndex="1" text="Nothing">
+            <padding>
+                <Insets left="3"/>
+            </padding>
+        </Label>
+        <Label GridPane.columnIndex="2" text=" || Duration: ">
+            <padding>
+                <Insets left="3"/>
+            </padding>
+        </Label>
+        <Label fx:id="sound_duration" GridPane.columnIndex="3" text="0.0">
             <padding>
                 <Insets left="3"/>
             </padding>
@@ -102,7 +115,7 @@
             </GridPane>
         </StackPane>
 
-        <Button fx:id="stop_button">Stop</Button>
+        <Button fx:id="stop_button" style="-fx-background-color: #cc0000;">Stop</Button>
 
         <StackPane>
             <GridPane alignment="CENTER">

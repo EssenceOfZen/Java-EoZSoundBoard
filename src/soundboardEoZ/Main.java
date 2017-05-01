@@ -1,6 +1,18 @@
+/* Essence Of Zen Soundboard
+*       This program is designed for the Essence Of Zen Podcast: After Dark
+*       Feel free to use it for your purposes but credit the creators and source.
+*
+*       Created by: Zane "ZenOokami" Blalock
+*       EssenceOfZen.org/
+*
+*
+*
+* */
+
 /* This file is essentially the start of the program, but the Controller.java file is what runs the GUI's actions
 * */
 
+// todo: Create a "LogSnoot" for Java, implement it into this program.
 package soundboardEoZ;
 
 import javafx.application.Application;
